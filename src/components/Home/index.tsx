@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 
 // Material UI
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 // Components
 import ListingProduct from "./ListingProduct";
@@ -16,13 +16,13 @@ import { GET_PRODUCT_LIST } from "../../core/api/apiRoute";
 import { ProductType } from "./types";
 
 // Context
-import { useDataState } from "../../screen/HomeContainer/HomeContext";
+import { InitialContext, useDataState } from "../../screen/HomeContainer/HomeContext";
 
 // Styles
 import "./Style.scss";
 
 const Home = () => {
-    const { onGetProducts } = useDataState();
+    const { onGetProducts } = useDataState() as InitialContext;
     useEffect(() => {
         axios.get(GET_PRODUCT_LIST).then((res: AxiosResponse) => {
             const { data } = res;
@@ -33,17 +33,19 @@ const Home = () => {
     }, [])
 
     return (
-        <Grid container>
-            <Grid item xs={2}>
-                <SideBar />
+        <Container>
+            <Grid container>
+                <Grid item xs={2}>
+                    <SideBar />
+                </Grid>
+                <Grid item xs={8}>
+                    <ListingProduct />
+                </Grid>
+                <Grid item xs={2}>
+                    <Cart />
+                </Grid>
             </Grid>
-            <Grid item xs={8}>
-                <ListingProduct />
-            </Grid>
-            <Grid item xs={2}>
-                <Cart />
-            </Grid>
-        </Grid>
+        </Container>
     )
 }
 

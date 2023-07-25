@@ -1,5 +1,5 @@
 
-import { Container } from "@mui/material"
+// Components
 import Home from "../../components/Home"
 
 // Context
@@ -10,11 +10,9 @@ import "./Style.scss"
 
 const HomeContainer = () => {
     return (
-        <Container>
-            <ContextProvider>
-                <Home />
-            </ContextProvider>
-        </Container>
+        <ContextProvider>
+            <Home />
+        </ContextProvider>
     )
 }
 

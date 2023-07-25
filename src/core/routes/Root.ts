@@ -13,7 +13,7 @@ const mainRoutes = [
     },
     {
         id: 2,
-        path: routes.PRODUCT_DETAIL,
+        path: `${routes.PRODUCT_DETAIL}/:slug`,
         Component: ProductDetail,
     }
 ]

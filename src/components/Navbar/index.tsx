@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 
 // Material UI
 import { AppBar, Box, Toolbar, Typography, Button, Container } from '@mui/material';
@@ -17,12 +18,13 @@ const appBarStyles = {
 }
 
 export default function ButtonAppBar() {
+    const navigate = useNavigate();
     return (
         <AppBar position="sticky" sx={appBarStyles}>
             <Box sx={{ flexGrow: 1 }}>
                 <Container >
                     <Toolbar>
-                        <Typography variant="h5" noWrap component="div" sx={{ fontWeight: 'bold' }}>
+                        <Typography onClick={() => navigate("/")} variant="h5" noWrap component="div" sx={{ fontWeight: 'bold', userSelect: "none", cursor: "pointer" }}>
                             Eteration
                         </Typography>
                         <Search>
