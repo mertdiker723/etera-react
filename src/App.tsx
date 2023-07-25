@@ -7,7 +7,6 @@ import Navbar from './components/Navbar';
 // Core
 import mainRoutes from './core/routes/Root';
 
-
 const App = () => {
   return (
     <>
