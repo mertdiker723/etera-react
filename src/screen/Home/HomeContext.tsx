@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
-import { ProductType } from "../../components/Home/types";
+import { ProductType } from "../../components/HomeContainer/types";
 
 type ReducerType = {
     productListing: ProductType[];
@@ -10,6 +10,7 @@ export type InitialContext = {
     onGetProducts: (item: ProductType[]) => void;
     onSortBy: (value: string) => void;
     memoProductListing: ProductType[];
+    productListing: ProductType[];
 }
 
 export const ProductContext = createContext<InitialContext>({} as InitialContext);
@@ -51,7 +52,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     }, [radioSortBy, productListing]);
 
     return (
-        <ProductContext.Provider value={{ state, onGetProducts, onSortBy, memoProductListing }}>
+        <ProductContext.Provider value={{ state, onGetProducts, onSortBy, memoProductListing, productListing }}>
             {children}
         </ProductContext.Provider>
     )

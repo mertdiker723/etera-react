@@ -1,6 +1,6 @@
 
 // Components
-import Home from "../../components/Home"
+import Home from "../../components/HomeContainer"
 
 // Context
 import { ContextProvider } from "./HomeContext"

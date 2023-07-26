@@ -7,8 +7,8 @@ const SideBar = () => {
     return (
         <Container disableGutters sx={{ mt: 4 }}>
             <SortBy />
-            <Model />
             <Brands />
+            <Model />
         </Container>
     )
 }
