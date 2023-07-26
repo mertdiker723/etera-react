@@ -1,28 +1,40 @@
-import { Card, CardActions, CardContent, Button, Typography } from '@mui/material';
+import { useState } from 'react';
+
+import { Button, Card, CardActions, CardContent, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { InitialContext, useDataState } from '../../../../screen/Home/HomeContext';
 
 
 const SortBy = () => {
+    const { state, onSortBy } = useDataState() as InitialContext;
+    const { radioSortBy } = state;
+
+    const radioHandleChange = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
+        onSortBy(value)
+    }
     return (
         <Card>
             <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Word of the Day
-                </Typography>
-                <Typography variant="h5" component="div">
-                    ntesting
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    adjective
-                </Typography>
-                <Typography variant="body2">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
-                </Typography>
+                <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">Sort By</FormLabel>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        name="radio-buttons-group"
+                        value={radioSortBy}
+                        onChange={radioHandleChange}
+                    >
+                        <FormControlLabel value="oldToNew" control={<Radio />} label="Old to new" />
+                        <FormControlLabel value="newToOld" control={<Radio />} label="New to old" />
+                        <FormControlLabel value="priceHighToLow" control={<Radio />} label="Price high to low" />
+                        <FormControlLabel value="priceLowToHigh" control={<Radio />} label="Price low to high" />
+                    </RadioGroup>
+                </FormControl>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
+            {
+                radioSortBy && <CardActions>
+                    <Button onClick={() => onSortBy("")} size="small">Clear</Button>
+                </CardActions>
+            }
+
         </Card>
     )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 
 // Material UI
@@ -16,7 +16,7 @@ import { GET_PRODUCT_LIST } from "../../core/api/apiRoute";
 import { ProductType } from "./types";
 
 // Context
-import { InitialContext, useDataState } from "../../screen/HomeContainer/HomeContext";
+import { InitialContext, useDataState } from "../../screen/Home/HomeContext";
 
 // Styles
 import "./Style.scss";
@@ -33,7 +33,7 @@ const Home = () => {
     }, [])
 
     return (
-        <Container>
+        <Container disableGutters maxWidth="xl" sx={{ pl: 5, pr: 5 }}>
             <Grid container>
                 <Grid item xs={2}>
                     <SideBar />

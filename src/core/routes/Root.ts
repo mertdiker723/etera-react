@@ -2,7 +2,7 @@ import { lazy } from "react";
 import * as routes from "./Constant";
 
 // Routes
-const Home = lazy(() => import("../../screen/HomeContainer/index"));
+const Home = lazy(() => import("../../screen/Home/index"));
 const ProductDetail = lazy(() => import("../../screen/ProductDetailContainer/index"));
 
 const mainRoutes = [

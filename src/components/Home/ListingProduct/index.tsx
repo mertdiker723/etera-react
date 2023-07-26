@@ -2,13 +2,12 @@ import { Container, Card, CardContent, CardMedia, Typography, Button, CardAction
 import { useNavigate } from "react-router-dom";
 
 // Context
-import { InitialContext, useDataState } from "../../../screen/HomeContainer/HomeContext";
+import { InitialContext, useDataState } from "../../../screen/Home/HomeContext";
 
 // Styles
 import "./Style.scss"
 const ListingProduct = () => {
-    const { state } = useDataState() as InitialContext;
-    const { productListing } = state;
+    const { memoProductListing } = useDataState() as InitialContext;
 
     // Route
     const navigate = useNavigate();
@@ -17,7 +16,7 @@ const ListingProduct = () => {
         <Container disableGutters sx={{ mt: 4, pl: 5, pr: 5 }}>
             <Grid container spacing={3}>
                 {
-                    productListing.map(product => {
+                    memoProductListing.map(product => {
                         const { brand, id, image, model, price } = product || {};
                         return (
                             <Grid item xs={12} sm={4} md={3} key={id}>
