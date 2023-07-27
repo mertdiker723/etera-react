@@ -9,8 +9,6 @@ const Brands = () => {
     const { state } = useDataState() as InitialContext;
     const { productListing } = state;
     
-    console.log(productListing);
-    
     const memoBrands = useMemo(() => Array.from(new Set(productListing.map((item) => item.brand))), [productListing])
 
     const [, setStateCheckBox] = useState("");

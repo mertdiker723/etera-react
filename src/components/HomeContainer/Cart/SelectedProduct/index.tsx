@@ -7,7 +7,7 @@ const Cart = () => {
             <Card sx={{ mt: 4 }}>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Word of the Day
+                        Checkout
                     </Typography>
                     <Typography variant="h5" component="div">
                         ntesting

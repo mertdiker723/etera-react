@@ -1,5 +1,6 @@
 import { Container, Card, CardContent, CardMedia, Typography, Button, CardActionArea, CardActions, Grid } from "@mui/material"
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 // Context
 import { InitialContext, useDataState } from "../../../screen/Home/HomeContext";
@@ -8,7 +9,8 @@ import { InitialContext, useDataState } from "../../../screen/Home/HomeContext";
 import "./Style.scss"
 const ListingProduct = () => {
     const { memoProductListing } = useDataState() as InitialContext;
-
+    const dispatch = useDispatch()
+ 
     // Route
     const navigate = useNavigate();
 
@@ -41,7 +43,7 @@ const ListingProduct = () => {
                                         </CardContent>
                                     </CardActionArea>
                                     <CardActions>
-                                        <Button size="small" variant="contained" fullWidth className="add-cart__button">
+                                        <Button onClick={() => dispatch({ type: "CART_ADD", payload: { id, name: brand, price } })} size="small" variant="contained" fullWidth className="add-cart__button">
                                             Add To Cart
                                         </Button>
                                     </CardActions>
