@@ -31,7 +31,7 @@ export default function ButtonAppBar() {
 
     const sumItem = useMemo(() => {
         return cartItem.reduce((accumulator: number, currentValue: InitialStateType) => {
-            return accumulator + +currentValue.price
+            return accumulator + (+currentValue.price * (currentValue.count || 1))
         }, 0)
     }, [cartItem]);
 
