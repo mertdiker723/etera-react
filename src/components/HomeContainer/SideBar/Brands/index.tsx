@@ -1,15 +1,14 @@
 import { useState } from 'react';
 
-import { Card, CardActions, CardContent, Button, FormGroup, FormControl, FormLabel, FormControlLabel, Checkbox, FormHelperText } from '@mui/material';
-import { InitialContext, useDataState } from '../../../../screen/Home/HomeContext';
+import { Card, CardContent, FormGroup, FormControl, FormLabel, FormControlLabel, Checkbox } from '@mui/material';
+import { useDataState } from '../../../../screen/Home/HomeContext';
 import { useMemo } from 'react';
 
 
 const Brands = () => {
-    const { state } = useDataState() as InitialContext;
-    const { productListing } = state;
-    
-    const memoBrands = useMemo(() => Array.from(new Set(productListing.map((item) => item.brand))), [productListing])
+    const { productListing } = useDataState();
+
+    const memoBrands = useMemo(() => Array.from(new Set(productListing && productListing.map((item) => item.brand))), [productListing])
 
     const [, setStateCheckBox] = useState("");
 

@@ -1,14 +1,15 @@
 import { Button, Card, CardActions, CardContent, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
-import { InitialContext, useDataState } from '../../../../screen/Home/HomeContext';
+import { useDataState, useDataDispatch } from '../../../../screen/Home/HomeContext';
 
 
 const SortBy = () => {
-    const { state, onSortBy } = useDataState() as InitialContext;
-    const { radioSortBy } = state;
+    const { radioSortBy } = useDataState();
+    const dispatch = useDataDispatch();
 
     const radioHandleChange = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
-        onSortBy(value)
+        dispatch({ type: "SORT_RADIO", payload: { radioSortBy: value } })
     }
+
     return (
         <Card>
             <CardContent>
@@ -17,7 +18,7 @@ const SortBy = () => {
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
                         name="radio-buttons-group"
-                        value={radioSortBy}
+                        value={radioSortBy || ""}
                         onChange={radioHandleChange}
                     >
                         <FormControlLabel value="oldToNew" control={<Radio />} label="Old to new" />
@@ -29,7 +30,7 @@ const SortBy = () => {
             </CardContent>
             {
                 radioSortBy && <CardActions>
-                    <Button onClick={() => onSortBy("")} size="small">Clear</Button>
+                    <Button onClick={() => dispatch({ type: "SORT_RADIO", payload: { radioSortBy: "" } })} size="small">Clear</Button>
                 </CardActions>
             }
 

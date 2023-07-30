@@ -16,21 +16,21 @@ import { GET_PRODUCT_LIST } from "../../core/api/apiRoute";
 import { ProductType } from "./types";
 
 // Context
-import { InitialContext, useDataState } from "../../screen/Home/HomeContext";
+import { useDataDispatch } from "../../screen/Home/HomeContext";
 
 // Styles
 import "./Style.scss";
 
 const Home = () => {
-    const { onGetProducts } = useDataState() as InitialContext;
+    const dispatch = useDataDispatch();
     useEffect(() => {
         axios.get(GET_PRODUCT_LIST).then((res: AxiosResponse) => {
             const { data } = res;
-            onGetProducts(data as ProductType[]);
+            dispatch({ type: "GET_PRODUCTS", payload: { productListing: data as ProductType[] } })
         }).catch(err => {
             console.log(err);
         })
-    }, [])
+    }, [dispatch])
 
     return (
         <Container disableGutters maxWidth="xl" sx={{ pl: 5, pr: 5 }}>
