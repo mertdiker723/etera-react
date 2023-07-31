@@ -1,14 +1,14 @@
 import { Container } from "@mui/material"
 
-import Checkout from "./Checkout"
 import SelectedProduct from "./SelectedProduct"
+import Checkout from "./Checkout"
 
 
 const Cart = () => {
     return (
         <Container disableGutters sx={{ mt: 4 }}>
-            <Checkout />
             <SelectedProduct />
+            <Checkout />
         </Container>
     )
 }

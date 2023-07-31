@@ -1,63 +1,31 @@
-import { useDispatch, useSelector } from 'react-redux';
-
-// Material UI
-import { Card, CardActions, CardContent, Button, Typography, ToggleButtonGroup, ToggleButton, Grid } from '@mui/material';
-
-// Types
-import { InitialStateType } from '../../../../core/redux/reducer/cart/initialState';
+import { Card, CardActions, CardContent, Button, Typography } from '@mui/material';
 
 
 const Checkout = () => {
-    const cartItem = useSelector<{ cartItem: InitialStateType }>((item) => item.cartItem) as InitialStateType[];
-    const dispatch = useDispatch()
-
-    const handleChange = (event: React.MouseEvent<HTMLElement>, data: InitialStateType) => {
-        const { id, name, price, count } = data;
-        if (event.currentTarget.id === "plus") {
-            dispatch({ type: "CART_ADD", payload: { id, name, price, count } })            
-            return;
-        }        
-    };
-
     return (
-        <Card>
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Cart
-                </Typography>
-                {
-                    cartItem.map(item => {
-                        const { id, count, name, price } = item;
-                        return (
-                            <Grid container sx={{ mt: 1 }}>
-                                <Grid item xs={6}>
-                                    {name}
-                                    <br />
-                                    {price * (count || 1)} ₺
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <ToggleButtonGroup
-                                        value={id}
-                                        exclusive
-                                        key={id}
-                                        onChange={handleChange}
-                                        aria-label="Platform"
-                                    >
-                                        <ToggleButton id="minus" value={item}>-</ToggleButton>
-                                        <ToggleButton disabled value="price">{count}</ToggleButton>
-                                        <ToggleButton id="plus" value={item}>+</ToggleButton>
-                                    </ToggleButtonGroup>
-                                </Grid>
-
-                            </Grid>
-                        )
-                    })
-                }
-            </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
-        </Card>
+        <>
+            <Card sx={{ mt: 4 }}>
+                <CardContent>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        Checkout
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                        ntesting
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        adjective
+                    </Typography>
+                    <Typography variant="body2">
+                        well meaning and kindly.
+                        <br />
+                        {'"a benevolent smile"'}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">Learn More</Button>
+                </CardActions>
+            </Card>
+        </>
     )
 }
 
