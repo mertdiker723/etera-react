@@ -1,28 +1,37 @@
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { Card, CardActions, CardContent, Button, Typography } from '@mui/material';
 
+import { InitialStateType } from '../../../../core/redux/reducer/cart/initialState';
+
+// Styles
+import "./Style.scss";
 
 const Checkout = () => {
+    const cartItem = useSelector<{ cartItem: InitialStateType }>((item) => item.cartItem) as InitialStateType[];
+
+    const sumItem = useMemo(() => {
+        return cartItem.reduce((accumulator: number, currentValue: InitialStateType) => {
+            return accumulator + (+currentValue.price * (currentValue.count || 1))
+        }, 0)
+    }, [cartItem]);
+
     return (
         <>
             <Card sx={{ mt: 4 }}>
                 <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Checkout
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                        ntesting
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        adjective
-                    </Typography>
+
                     <Typography variant="body2">
-                        well meaning and kindly.
-                        <br />
-                        {'"a benevolent smile"'}
+                        Total Price: <div className='sumItem'>{sumItem} ₺</div>
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Learn More</Button>
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        size="small"
+                        className='checkoutButton'
+                    >Checkout</Button>
                 </CardActions>
             </Card>
         </>

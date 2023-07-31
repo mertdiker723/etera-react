@@ -18,7 +18,7 @@ const cartReducer = (state: CartReducerType[] = [], action: { type: string; payl
             return [...state, { ...payload, count: 1 }]
         case cartActionTypes.CART_MINUS:
             const findedItemMinus = state.find(item => item.id === payload.id);
-            
+
             if (findedItemMinus) {
                 if (findedItemMinus.count === 1) {
                     return state.filter(item => item.id !== findedItemMinus.id);

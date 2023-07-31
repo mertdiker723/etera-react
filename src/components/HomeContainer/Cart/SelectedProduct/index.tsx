@@ -23,9 +23,11 @@ const SelectedProduct = () => {
     return (
         <Card>
             <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Cart
-                </Typography>
+                {
+                    !Boolean(cartItem.length) && <Typography sx={{ fontSize: 14, textAlign: "center", mt: 2 }} color="text.secondary" gutterBottom>
+                        No Product...
+                    </Typography>
+                }
                 {
                     cartItem.map(item => {
                         const { id, count, name, price } = item;
@@ -54,9 +56,6 @@ const SelectedProduct = () => {
                     })
                 }
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
         </Card>
     )
 }
